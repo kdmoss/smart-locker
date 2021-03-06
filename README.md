@@ -22,3 +22,11 @@ Sadly I wasn't able to connect to the KSU Wireless using HTTP Authentication. He
 
 ![HTTP](https://user-images.githubusercontent.com/80173030/110221670-3d612100-7e93-11eb-9f86-d111b6a979a4.PNG)
 
+
+As for now I will try to finish the project at home so that later we can focus on setting it up at school.
+
+**DATABASE SETUP:**
+
+Pin connections for ESP8266 to BME280. Here below is the picture
+
+![pins](https://user-images.githubusercontent.com/80173030/110221799-d132ed00-7e93-11eb-9d7d-8fa7f44277e9.PNG)
