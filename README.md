@@ -3,6 +3,7 @@
 ## Progress This week
 
 **SETUP ESP8266 AT SCHOOL:**
+
 To setup ESP8266 at school need to follow some instructions:
 
 1. On the Arduino IDE need to go to **File > Preferences**
