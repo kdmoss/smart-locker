@@ -16,7 +16,7 @@ To setup ESP8266 at school need to follow some instructions:
 
 Also install drivers using this website: https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers … **Make sure it is a CP210x Universal Windows Driver.** This will make sure arduino read ports for ESP8266
 
-**Conclusion**
+**Conclusion:**
 
 Sadly I wasn't able to connect to the KSU Wireless using HTTP Authentication. Here is the result.
 
