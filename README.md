@@ -30,3 +30,9 @@ As for now I will try to finish the project at home so that later we can focus o
 Pin connections for ESP8266 to BME280. Here below is the picture
 
 ![pins](https://user-images.githubusercontent.com/80173030/110221799-d132ed00-7e93-11eb-9d7d-8fa7f44277e9.PNG)
+
+**Door Lock Circuit setup**
+I have successfully completed the code for the door luck to open and close by creating a web server that spits a URL with a IP-address.
+
+Here below is how the circuit looks like.
+
