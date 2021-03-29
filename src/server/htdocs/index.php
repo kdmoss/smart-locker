@@ -8,7 +8,6 @@
 		$db_pass = "";
 		$db_name = "smart_locker_schema";
 
-
 		$db = new mysqli($db_host, $db_user, $db_pass);
 
 		if ($db->connect_errno)
