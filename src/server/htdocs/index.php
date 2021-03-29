@@ -1,14 +1,12 @@
 <?php
 	require_once '../vendor/autoload.php';
 
-	// Verify that Twig has loaded
-
 	function Database()
 	{
 		$db_host = "localhost";
 		$db_user = "root";
 		$db_pass = "";
-		$db_name = "smart_lock";
+		$db_name = "smart_locker_schema";
 
 
 		$db = new mysqli($db_host, $db_user, $db_pass);
@@ -21,7 +19,7 @@
 
 	$db = Database();
 
-	$active = $db->query("SELECT * FROM smart_lock.test");
+	$active = $db->query("SELECT * FROM smart_locker_schema.smart_lockers");
 	var_dump($active->fetch_assoc());
 
 	$db->close();
