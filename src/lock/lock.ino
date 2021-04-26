@@ -66,26 +66,23 @@ void clearWLAN()
 {
   wifi_station_clear_cert_key();
   wifi_station_clear_enterprise_ca_cert();
-  wifi_station_clear_enterprise_identity();
-  wifi_station_clear_enterprise_username();
-  wifi_station_clear_enterprise_password();
-  wifi_station_clear_enterprise_new_password();
 }
 
 // Init wlan connection
 void initWLAN()
 {
-  WiFi.mode(WIFI_SATA);
+  WiFi.mode(WIFI_STA);
   wifi_set_opmode(STATION_MODE);
   
   struct station_config wifi_config;
   memset(&wifi_config, 0, sizeof(wifi_config));
   strcpy((char*)wifi_config.ssid, ssid);
-
-  clearWLAN();
   
   wifi_station_set_config(&wifi_config);
+  clearWLAN();
+  Serial.println("CLEAR DONE");
   wifi_station_set_wpa2_enterprise_auth(1);
+  Serial.println("SETUP DONE");
 
   wifi_station_set_enterprise_identity((uint8*)username, strlen(username));
   wifi_station_set_enterprise_username((uint8*)username, strlen(username));
@@ -95,7 +92,7 @@ void initWLAN()
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(1000);
-    System.println(".");
+    Serial.println(".");
   }
 }
 
