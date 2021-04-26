@@ -8,7 +8,7 @@ extern "C" {
 }
 
 // WLAN configuration
-const char ssid[]     = "KSU Wireless";
+const char ssid[]     = "eduroam";
 const char username[] = "leonar29";
 const char password[] = "basicc0ncepts29";
 
@@ -37,11 +37,11 @@ void initWLAN()
   wifi_station_set_enterprise_password((uint8_t*)password, strlen(password));
   wifi_station_connect();
 
-  WiFi.printDiag(Serial);
   
   while (WiFi.status() != WL_CONNECTED)
   {
-    Serial.println(".");
+    WiFi.printDiag(Serial);
+    delay(500);
   }
 }
 
