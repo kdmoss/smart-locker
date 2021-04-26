@@ -1,5 +1,4 @@
 /* Reference: */ 
-
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
@@ -95,7 +94,7 @@ void initWLAN()
   
   while (WiFi.status() != WL_CONNECTED)
   {
-    delay(500);
+    delay(1000);
   }
 }
 
@@ -104,17 +103,15 @@ void setup(void)
   Serial.begin(115200);
   initOutput();
   initWLAN();
-  Serial.print("Connected to ");
-  Serial.println(ssid);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
   
-  server.on("/toggle", [](){toggle();});
-  server.onNotFound(handlePrint);
-  server.begin();
+//  server.on("/toggle", [](){toggle();});
+//  server.onNotFound(handlePrint);
+//  server.begin();
 }
 
 void loop(void)
 {
-  server.handleClient();
+//  server.handleClient();
 }
