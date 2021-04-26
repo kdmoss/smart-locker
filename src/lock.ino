@@ -1,25 +1,16 @@
-/*
-  WiFiLock
-  This project is wlan connected (ESP8266) lock that can be controlled if you have access to wlan
-  Gpio2 pin is used to unlock the lock. You should build your electronics accordingly. 
-  created   Aug 2017
-  by CheapskateProjects
-  ---------------------------
-  The MIT License (MIT)
-  Copyright (c) 2017 CheapskateProjects
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+/* Reference: */ 
 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+// #include <SPI.h>
+// #include <WiFiNINA.h>
 
 // WLAN configuration
-const char *ssid     = "";
-const char *password = "";
+const char *ssid     = "KSU Wireless";
+const char *username = "leonar29";
+const char *password = "basicc0ncepts29";
 
 // Constants that can be changed based on your hardware or preferences
 const int solenoidPin = 2;
@@ -61,7 +52,6 @@ void handlePrint()
   }
 
   html += "</a></body></html>";
-  
   server.send(200, "text/html", html);
 }
 
@@ -75,7 +65,7 @@ void initOutput()
 // Init wlan connection
 void initWLAN()
 {
-  WiFi.begin(ssid, password);
+  WiFi.beginEnterprise(ssid, username, password);
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
