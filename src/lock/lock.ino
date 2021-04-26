@@ -71,9 +71,11 @@ void clearWLAN()
 // Init wlan connection
 void initWLAN()
 {
+  Serial.println("INIT START");
   WiFi.mode(WIFI_STA);
   wifi_set_opmode(STATION_MODE);
-  
+  Serial.println("STATION DONE");
+
   struct station_config wifi_config;
   memset(&wifi_config, 0, sizeof(wifi_config));
   strcpy((char*)wifi_config.ssid, ssid);
