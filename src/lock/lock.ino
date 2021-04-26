@@ -12,56 +12,6 @@ const char ssid[]     = "KSU Wireless";
 const char username[] = "leonar29";
 const char password[] = "basicc0ncepts29";
 
-// Constants that can be changed based on your hardware or preferences
-const int solenoidPin = 2;
-
-// status 
-bool locked = true;
-
-// ESP8266WebServer server(80);
-
-// Toggle lock status
-void toggle()
-{
-  if (locked)
-  {
-    digitalWrite(solenoidPin, 1);
-    locked = false;
-  }
-  else
-  {
-    digitalWrite(solenoidPin, 0);
-    locked = true;
-  }
-  
-  // server.send(200, "text/html", "<html><head><meta http-equiv=\"refresh\" content=\"0; url=/\" /></head><body></body></html>");
-}
-
-// Handler for each url except toggle (just print the button)
-void handlePrint()
-{
-  String html = "<html><head></head><body style=\"margin:10px;\"><a style=\"display: inline-block; height: 30%; background-color: grey; color: white; font-size: 25vmin; font-family: arial; width: 100%; text-align:center; text-decoration: none;\" href=\"/toggle\">";
-
-  if (locked)
-  {
-    html += "Unlock";
-  }
-  else
-  {
-    html += "Lock";
-  }
-
-  html += "</a></body></html>";
-  // server.send(200, "text/html", html);
-}
-
-// Init output pin
-void initOutput()
-{
-  pinMode(solenoidPin, OUTPUT);
-  digitalWrite(solenoidPin, 0);
-}
-
 void clearWLAN()
 {
   wifi_station_clear_cert_key();
@@ -71,6 +21,7 @@ void clearWLAN()
 // Init wlan connection
 void initWLAN()
 {
+  WiFi.mode(WIFI_STA);
   wifi_set_opmode(STATION_MODE);
 
   struct station_config wifi_config;
@@ -81,10 +32,12 @@ void initWLAN()
   
   clearWLAN();
 
-  wifi_station_set_enterprise_identity((uint8*)username, strlen(username));
-  wifi_station_set_enterprise_username((uint8*)username, strlen(username));
-  wifi_station_set_enterprise_password((uint8*)password, strlen(password));
+  wifi_station_set_enterprise_identity((uint8_t*)username, strlen(username));
+  wifi_station_set_enterprise_username((uint8_t*)username, strlen(username));
+  wifi_station_set_enterprise_password((uint8_t*)password, strlen(password));
   wifi_station_connect();
+
+  WiFi.printDiag(Serial);
   
   while (WiFi.status() != WL_CONNECTED)
   {
@@ -96,17 +49,10 @@ void initWLAN()
 void setup(void)
 {
   Serial.begin(115200);
-//  initOutput();
+  Serial.setDebugOutput(true);
   initWLAN();
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
-  
-//  server.on("/toggle", [](){toggle();});
-//  server.onNotFound(handlePrint);
-//  server.begin();
 }
 
-void loop(void)
-{
-//  server.handleClient();
-}
+void loop(void) { }
