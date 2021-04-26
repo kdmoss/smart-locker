@@ -8,7 +8,7 @@ extern "C" {
 }
 
 // WLAN configuration
-const char ssid[]     = "eduroam";
+const char ssid[]     = "KSU Wireless";
 const char username[] = "leonar29";
 const char password[] = "basicc0ncepts29";
 
@@ -17,6 +17,8 @@ void clearWLAN()
   wifi_station_clear_cert_key();
   wifi_station_clear_enterprise_ca_cert();
 }
+
+uint8_t target_mac = {0x3e, 0x36, 0xfe, 0xde, 0x72, 0x38};
 
 // Init wlan connection
 void initWLAN()
@@ -27,7 +29,9 @@ void initWLAN()
   struct station_config wifi_config;
   memset(&wifi_config, 0, sizeof(wifi_config));
   strcpy((char*)wifi_config.ssid, ssid);
+  
   wifi_station_set_config(&wifi_config);  
+  wifi_set_macaddr(STATION_IF, target_mac);
   wifi_station_set_wpa2_enterprise_auth(1);
   
   clearWLAN();
