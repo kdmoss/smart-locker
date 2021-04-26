@@ -18,7 +18,7 @@ const int solenoidPin = 2;
 // status 
 bool locked = true;
 
-ESP8266WebServer server(80);
+// ESP8266WebServer server(80);
 
 // Toggle lock status
 void toggle()
@@ -71,20 +71,15 @@ void clearWLAN()
 // Init wlan connection
 void initWLAN()
 {
-  Serial.println("INIT START");
-  WiFi.mode(WIFI_STA);
   wifi_set_opmode(STATION_MODE);
-  Serial.println("STATION DONE");
 
   struct station_config wifi_config;
   memset(&wifi_config, 0, sizeof(wifi_config));
   strcpy((char*)wifi_config.ssid, ssid);
-  
   wifi_station_set_config(&wifi_config);
+  
   clearWLAN();
-  Serial.println("CLEAR DONE");
   wifi_station_set_wpa2_enterprise_auth(1);
-  Serial.println("SETUP DONE");
 
   wifi_station_set_enterprise_identity((uint8*)username, strlen(username));
   wifi_station_set_enterprise_username((uint8*)username, strlen(username));
@@ -101,7 +96,7 @@ void initWLAN()
 void setup(void)
 {
   Serial.begin(115200);
-  initOutput();
+//  initOutput();
   initWLAN();
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
