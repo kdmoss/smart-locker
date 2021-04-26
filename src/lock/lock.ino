@@ -8,9 +8,9 @@ extern "C" {
 }
 
 // WLAN configuration
-const char *ssid     = "KSU Wireless";
-const char *username = "leonar29";
-const char *password = "basicc0ncepts29";
+const char ssid[]     = "KSU Wireless";
+const char username[] = "leonar29";
+const char password[] = "basicc0ncepts29";
 
 // Constants that can be changed based on your hardware or preferences
 const int solenoidPin = 2;
@@ -34,7 +34,7 @@ void toggle()
     locked = true;
   }
   
-  server.send(200, "text/html", "<html><head><meta http-equiv=\"refresh\" content=\"0; url=/\" /></head><body></body></html>");
+  // server.send(200, "text/html", "<html><head><meta http-equiv=\"refresh\" content=\"0; url=/\" /></head><body></body></html>");
 }
 
 // Handler for each url except toggle (just print the button)
@@ -52,7 +52,7 @@ void handlePrint()
   }
 
   html += "</a></body></html>";
-  server.send(200, "text/html", html);
+  // server.send(200, "text/html", html);
 }
 
 // Init output pin
@@ -76,10 +76,10 @@ void initWLAN()
   struct station_config wifi_config;
   memset(&wifi_config, 0, sizeof(wifi_config));
   strcpy((char*)wifi_config.ssid, ssid);
-  wifi_station_set_config(&wifi_config);
+  wifi_station_set_config(&wifi_config);  
+  wifi_station_set_wpa2_enterprise_auth(1);
   
   clearWLAN();
-  wifi_station_set_wpa2_enterprise_auth(1);
 
   wifi_station_set_enterprise_identity((uint8*)username, strlen(username));
   wifi_station_set_enterprise_username((uint8*)username, strlen(username));
