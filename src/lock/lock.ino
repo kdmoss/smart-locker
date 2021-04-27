@@ -2,60 +2,87 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-extern "C" {
+extern "C" 
+{
   #include "user_interface.h"
   #include "wpa2_enterprise.h"
 }
 
-// WLAN configuration
-const char ssid[]     = "KSU Wireless";
-const char username[] = "leonar29";
-const char password[] = "basicc0ncepts29";
+ESP8266WebServer server(80);
 
-void clearWLAN()
+// WLAN configuration
+const char ssid[]     = "linksys";
+const char password[] = "password";
+// Lock configuration
+boolean locked = false;
+
+void handleRoot()
 {
-  wifi_station_clear_cert_key();
-  wifi_station_clear_enterprise_ca_cert();
+  String html = "<html><head></head><body style=\"margin:10px;\"><a style=\"display: inline-block; height: 30%; background-color: grey; color: white; font-size: 25vmin; font-family: arial; width: 100%; text-align:center; text-decoration: none;\" href=\"/toggle\">";
+
+  if (locked) html += "Unlock";
+  else html += "Lock";
+
+  html += "</a></body></html>";
+  server.send(200, "text/htmls", html);
 }
 
-uint8_t target_mac = {0x3e, 0x36, 0xfe, 0xde, 0x72, 0x38};
+void handleNotFound()
+{
+  server.send(404, "text/plain", "Not Found");
+}
+
+void handleLogin()
+{
+  server.send(200, "text/plain", "Login");
+}
+
+void handleToggle()
+{
+  digitalWrite(solenoidPin, (int)locked);
+  locked = !locked;
+}
+
+void initLock()
+{
+  pinMode(solenoidPin, OUTPUT);
+  digitalWrite(solenoidPin, 0);
+}
 
 // Init wlan connection
 void initWLAN()
 {
-  WiFi.mode(WIFI_STA);
-  wifi_set_opmode(STATION_MODE);
-
-  struct station_config wifi_config;
-  memset(&wifi_config, 0, sizeof(wifi_config));
-  strcpy((char*)wifi_config.ssid, ssid);
-  
-  wifi_station_set_config(&wifi_config);  
-  wifi_set_macaddr(STATION_IF, target_mac);
-  wifi_station_set_wpa2_enterprise_auth(1);
-  
-  clearWLAN();
-
-  wifi_station_set_enterprise_identity((uint8_t*)username, strlen(username));
-  wifi_station_set_enterprise_username((uint8_t*)username, strlen(username));
-  wifi_station_set_enterprise_password((uint8_t*)password, strlen(password));
-  wifi_station_connect();
-
+  WiFi.begin(ssid, password);
   
   while (WiFi.status() != WL_CONNECTED)
   {
+    delay(1000);
+    Serial.println("Diagnostics: ");
     WiFi.printDiag(Serial);
-    delay(500);
+    Serial.println("-------------");
   }
+
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void initServer()
+{
+  server.on("/", handleRoot);
+  server.on("/login", handleLogin);
+  server.on("/toggle", handleToggle);
+  server.onNotFound(handleNoteFound);
 }
 
 void setup(void)
 {
   Serial.begin(115200);
-  Serial.setDebugOutput(true);
+  initLock();
   initWLAN();
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+  initServer();
 }
 
-void loop(void) { }
+void loop(void) 
+{ 
+  server.handleClient();
+}
