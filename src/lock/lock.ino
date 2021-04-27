@@ -49,7 +49,6 @@ void initLock()
   digitalWrite(solenoidPin, 0);
 }
 
-// Init wlan connection
 void initWLAN()
 {
   WiFi.begin(ssid, password);
