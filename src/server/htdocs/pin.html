@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+    function punchDigit($element)
+    {
+        let $pin = document.querySelector('#pin');
+        let $digit = $element.querySelector('.digit');
+
+        if ($digit.id == 'backspace')
+        {
+            $pin.innerHTML = $pin.innerHTML.slice(0, -1);
+        }
+
+        else if ($digit.id == 'submit')
+        {
+            console.log($pin.innerHTML);
+            $pin.innerHTML = '';
+        }
+
+        else if ($pin.innerHTML.length < 4)
+        {
+            $pin.innerHTML += $digit.innerHTML;
+        }
+    }
+</script>
+<style>
+    .pin-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 200px;
+        height: 300px;
+        justify-content: flex-start;
+    }
+    .digit-container {
+        flex: 0 0 30%;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        background: red;
+        outline: 1px solid black;
+        text-align: center;
+    }
+    #pin-buffer {
+        flex: 0 0 95%;
+        height: 50px;
+        margin-bottom: 5px;
+        background: red;
+        outline: 1px solid black;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="pin-container">
+        <div id="pin-buffer">
+        	<p id="pin">1234</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">1</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">2</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">3</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">4</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">5</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">6</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">7</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">8</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">9</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p id="backspace" class="digit">⌫</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p class="digit">0</p>
+        </div>
+        <div class="digit-container" onclick="punchDigit(this)">
+            <p id="submit" class="digit">✓</p>
+        </div>
+    </div>
+</body>
+</html>
