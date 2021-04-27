@@ -51,6 +51,7 @@ void initWLAN()
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(1000);
+    Serial.println("-------------");
     Serial.println("Diagnostics: ");
     WiFi.printDiag(Serial);
     Serial.println("-------------");
