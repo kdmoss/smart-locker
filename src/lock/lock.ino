@@ -9,6 +9,7 @@ const char ssid[]     = "linksys";
 const char password[] = "password";
 // Lock configuration
 boolean locked = false;
+int solenoidPin = 2;
 
 void handleRoot()
 {
