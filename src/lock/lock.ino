@@ -1,12 +1,19 @@
 /* Reference: */ 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <ESP8266HTTPClient.h>
 
 ESP8266WebServer server(80);
+HTTPClient http;
+
+// Apache configuration
+const char domain[] = "http://192.168.0.84";
+const int port = 80;
 
 // WLAN configuration
-const char ssid[]     = "linksys";
-const char password[] = "password";
+const char ssid[] = "MOSS 2G";
+const char password[] = "G4m3rz0n3";
+
 // Lock configuration
 boolean locked = false;
 int solenoidPin = 2;
@@ -19,7 +26,7 @@ void handleRoot()
   else html += "Lock";
 
   html += "</a></body></html>";
-  server.send(200, "text/htmls", html);
+  server.send(200, "text/html", html);
 }
 
 void handleNotFound()
@@ -34,8 +41,24 @@ void handleLogin()
 
 void handleToggle()
 {
+  String html = "<html><head><meta http-equiv=\"refresh\" content=\"0; url=/\" /></head><body></body></html>";
   digitalWrite(solenoidPin, (int)locked);
   locked = !locked;
+  
+  server.send(200, "text/html", html);
+}
+
+void handleDomainResponse()
+{
+  int responseCode = http.GET();
+
+  if (responseCode > 0)
+  {
+    Serial.println("HTTP Response: ");
+    Serial.println("---------------");
+    Serial.println(http.getString());
+    Serial.println("---------------");
+  }
 }
 
 void initLock()
@@ -51,8 +74,8 @@ void initWLAN()
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(1000);
-    Serial.println("-------------");
     Serial.println("Diagnostics: ");
+    Serial.println("-------------");
     WiFi.printDiag(Serial);
     Serial.println("-------------");
   }
@@ -68,6 +91,7 @@ void initServer()
   server.on("/toggle", handleToggle);
   server.onNotFound(handleNotFound);
   server.begin();
+  http.begin(domain);
 }
 
 void setup(void)
@@ -81,4 +105,5 @@ void setup(void)
 void loop(void) 
 { 
   server.handleClient();
+  handleDomainResponse();
 }
