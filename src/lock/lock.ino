@@ -2,12 +2,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-extern "C" 
-{
-  #include "user_interface.h"
-  #include "wpa2_enterprise.h"
-}
-
 ESP8266WebServer server(80);
 
 // WLAN configuration
