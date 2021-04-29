@@ -14,7 +14,9 @@
 
         else if ($digit.id == 'submit')
         {
-            console.log($pin.innerHTML);
+            if ($pin.innerHTML.length < 4) alert("Please enter a 4-digit pin!");
+            else window.location.href = window.location.origin + "/unlock?pin=" + $pin.innerHTML;
+
             $pin.innerHTML = '';
         }
 
@@ -39,6 +41,7 @@
         background: red;
         outline: 1px solid black;
         text-align: center;
+        cursor: pointer;
     }
     #pin-buffer {
         flex: 0 0 95%;
@@ -53,7 +56,7 @@
 <body>
     <div class="pin-container">
         <div id="pin-buffer">
-        	<p id="pin">1234</p>
+        	<p id="pin"></p>
         </div>
         <div class="digit-container" onclick="punchDigit(this)">
             <p class="digit">1</p>
@@ -83,13 +86,13 @@
             <p class="digit">9</p>
         </div>
         <div class="digit-container" onclick="punchDigit(this)">
-            <p id="backspace" class="digit">⌫</p>
+            <p id="backspace" class="digit">delete</p>
         </div>
         <div class="digit-container" onclick="punchDigit(this)">
             <p class="digit">0</p>
         </div>
         <div class="digit-container" onclick="punchDigit(this)">
-            <p id="submit" class="digit">✓</p>
+            <p id="submit" class="digit">enter</p>
         </div>
     </div>
 </body>

@@ -1,9 +1,10 @@
 /* Reference: */ 
+#include <ESPAsyncTCP.h>
+#include <ESPAsyncWebServer.h>
 #include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
 #include <ESP8266HTTPClient.h>
 
-ESP8266WebServer server(80);
+AsyncWebServer server(80);
 HTTPClient http;
 
 // Apache configuration
@@ -18,7 +19,7 @@ const char password[] = "G4m3rz0n3";
 boolean locked = false;
 int solenoidPin = 2;
 
-void handleRoot()
+void handleRoot(AsyncWebServerRequest *request)
 {
   String html = "<html><head></head><body style=\"margin:10px;\"><a style=\"display: inline-block; height: 30%; background-color: grey; color: white; font-size: 25vmin; font-family: arial; width: 100%; text-align:center; text-decoration: none;\" href=\"/toggle\">";
 
@@ -26,26 +27,26 @@ void handleRoot()
   else html += "Lock";
 
   html += "</a></body></html>";
-  server.send(200, "text/html", html);
+  request->send(200, "text/html", html);
 }
 
-void handleNotFound()
+void handleNotFound(AsyncWebServerRequest *request)
 {
-  server.send(404, "text/plain", "Not Found");
+  request->send(404, "text/plain", "Not Found");
 }
 
-void handleLogin()
+void handleLogin(AsyncWebServerRequest *request)
 {
-  server.send(200, "text/plain", "Login");
+  request->send(200, "text/plain", "Login");
 }
 
-void handleToggle()
+void handleToggle(AsyncWebServerRequest *request)
 {
   String html = "<html><head><meta http-equiv=\"refresh\" content=\"0; url=/\" /></head><body></body></html>";
   digitalWrite(solenoidPin, (int)locked);
   locked = !locked;
   
-  server.send(200, "text/html", html);
+  request->send(200, "text/html", html);
 }
 
 void handleDomainResponse()
@@ -104,6 +105,5 @@ void setup(void)
 
 void loop(void) 
 { 
-  server.handleClient();
   handleDomainResponse();
 }
