@@ -6,7 +6,7 @@
 		$db_host = "localhost";
 		$db_user = "root";
 		$db_pass = "";
-		$db_name = "smart_locker_schema";
+		$db_name = "smartlocker";
 
 		$db = new mysqli($db_host, $db_user, $db_pass);
 
@@ -18,7 +18,7 @@
 
 	$db = Database();
 
-	$active = $db->query("SELECT * FROM smart_locker_schema.smart_lockers");
+	$active = $db->query("SELECT * FROM smartlocker.lockers");
 	var_dump($active->fetch_assoc());
 
 	$db->close();
