@@ -3,12 +3,13 @@
 #include <ESPAsyncWebServer.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <AsyncHTTPRequest_Generic.h>
 
 AsyncWebServer server(80);
-HTTPClient http;
+AsyncHTTPRequest response;
 
 // Apache configuration
-const char domain[] = "http://192.168.0.84";
+const String domain = "http://192.168.0.84";
 const int port = 80;
 
 // WLAN configuration
@@ -37,7 +38,48 @@ void handleNotFound(AsyncWebServerRequest *request)
 
 void handleLogin(AsyncWebServerRequest *request)
 {
-  request->send(200, "text/plain", "Login");
+  if (response.readyState() != readyStateUnsent 
+  && response.readyState() != readyStateDone)
+  {
+    Serial.println("Cannot handle response state");
+    return;
+  }
+
+  String endpoint = domain + String("/login");
+  if (!response.open("GET", endpoint.c_str())) 
+  {
+    Serial.println("Could not establish connection with " + endpoint);
+    return;
+  }
+    
+  response.send();
+  response.onReadyStateChange([request](void *optParam, AsyncHTTPRequest *payload, int readyState)
+  {
+    if (readyState == readyStateDone) request->send(200, "text/html", payload->responseText());
+  });
+}
+
+void handlePin(AsyncWebServerRequest *request)
+{
+  if (response.readyState() != readyStateUnsent 
+  && response.readyState() != readyStateDone)
+  {
+    Serial.println("Cannot handle response state");
+    return;
+  }
+
+  String endpoint = domain + String("/pin");
+  if (!response.open("GET", endpoint.c_str())) 
+  {
+    Serial.println("Could not establish connection with " + endpoint);
+    return;
+  }
+  
+  response.send();
+  response.onReadyStateChange([request](void *optParam, AsyncHTTPRequest *payload, int readyState)
+  {
+    if (readyState == readyStateDone) request->send(200, "text/html", payload->responseText());
+  });
 }
 
 void handleToggle(AsyncWebServerRequest *request)
@@ -47,19 +89,6 @@ void handleToggle(AsyncWebServerRequest *request)
   locked = !locked;
   
   request->send(200, "text/html", html);
-}
-
-void handleDomainResponse()
-{
-  int responseCode = http.GET();
-
-  if (responseCode > 0)
-  {
-    Serial.println("HTTP Response: ");
-    Serial.println("---------------");
-    Serial.println(http.getString());
-    Serial.println("---------------");
-  }
 }
 
 void initLock()
@@ -89,10 +118,10 @@ void initServer()
 {
   server.on("/", handleRoot);
   server.on("/login", handleLogin);
+  server.on("/pin", handlePin);
   server.on("/toggle", handleToggle);
   server.onNotFound(handleNotFound);
   server.begin();
-  http.begin(domain);
 }
 
 void setup(void)
@@ -105,5 +134,4 @@ void setup(void)
 
 void loop(void) 
 { 
-  handleDomainResponse();
 }
