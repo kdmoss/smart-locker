@@ -2,7 +2,7 @@
 
 ## Tutorial
 
-###Download and Install XAMPP:
+### Download and Install XAMPP:
 
 This software is _optional_ but allows us to run a PHP server locally.
 If you use another software or pay for cloud hosting this does not refer to you.
@@ -11,7 +11,7 @@ If you use another software or pay for cloud hosting this does not refer to you.
 2. Run the powershell script inside the `/src` folder.
 3. Launch the XAMPP Control Panel and start both the Apache and MySQL servers.
 
-###Configuring the ESP8266:
+### Configuring the ESP8266:
 
 Open the lock.ino source code in the Arduino IDE and perform the following:
 1. Add the [ESP8266 server](https://arduino.esp8266.com/stable/package_esp8266com_index.json) to the `Additional Boards Manager URLs` in `File > Preferences`.
