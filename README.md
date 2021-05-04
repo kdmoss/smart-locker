@@ -13,7 +13,7 @@ If you use another software or pay for cloud hosting this does not pertain to yo
 
 ### Configuring the ESP8266:
 
-Open the lock.ino source code in the Arduino IDE and perform the following:
+Open the `lock.ino` source code in the Arduino IDE and perform the following:
 1. Add the [ESP8266 server](https://arduino.esp8266.com/stable/package_esp8266com_index.json) to the `Additional Boards Manager URLs` in `File > Preferences`.
 2. Add the three libraries in the `/dependencies` folder by going to `Sketch > Include Library > Add .ZIP Library...`. 
 3. Alter the `domain` string in the source code to be the IPV4 of the device running the Apache server.
