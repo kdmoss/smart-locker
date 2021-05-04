@@ -5,7 +5,7 @@
 ### Download and Install XAMPP:
 
 This software is _optional_ but allows us to run a PHP server locally.
-If you use another software or pay for cloud hosting this does not refer to you.
+If you use another software or pay for cloud hosting this does not pertain to you.
 
 1. Download and install [XAMPP 8.0.5](https://www.apachefriends.org/index.html) for Windows from their website.
 2. Run the powershell script inside the `/src` folder.
