@@ -28,4 +28,4 @@ Open the `lock.ino` source code in the Arduino IDE and perform the following:
 * [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
 * [AsyncHTTPRequest](https://github.com/khoih-prog/AsyncHTTPRequest_Generic)
 * [ESP8266](https://www.espressif.com/en/products/socs/esp8266)
-* [Optional][XAMPP 8.0.5](https://www.apachefriends.org/index.html)
+* [XAMPP 8.0.5](https://www.apachefriends.org/index.html)
