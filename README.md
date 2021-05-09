@@ -1,5 +1,7 @@
 # smart-locker
 
+An open source, cost effective, WiFi controlled locker created as a senior project. 
+
 ## Tutorial
 
 ### Download and Install XAMPP:
@@ -20,3 +22,10 @@ Open the `lock.ino` source code in the Arduino IDE and perform the following:
 4. Alter the `ssid` string to be the SSID of the router you want the ESP8266 to connect to.
 5. Alter the `password` string to be, you guessed it, the password to the router you want the ESP8266 to connect to.
 6. Upload the code to the ESP8266 and voila.
+
+## Dependencies ##
+* [ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)
+* [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
+* [AsyncHTTPRequest](https://github.com/khoih-prog/AsyncHTTPRequest_Generic)
+* [ESP8266](https://www.espressif.com/en/products/socs/esp8266)
+* [Optional][XAMPP 8.0.5](https://www.apachefriends.org/index.html)
