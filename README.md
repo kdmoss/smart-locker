@@ -1,4 +1,4 @@
-# smart-door-lock
+# smart-locker
 
 ## Tutorial
 
