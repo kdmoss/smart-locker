@@ -1,6 +1,6 @@
 # smart-locker
 
-An open source, cost effective, WiFi controlled locker created as a senior project. 
+An open source, cost effective, WiFi controlled smart locker created as a senior project. 
 
 ## Tutorial
 
