@@ -24,8 +24,8 @@ Open the `lock.ino` source code in the Arduino IDE and perform the following:
 6. Upload the code to the ESP8266 and voila.
 
 ## Dependencies ##
+* [ESP8266](https://www.espressif.com/en/products/socs/esp8266)
 * [ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)
 * [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
 * [AsyncHTTPRequest](https://github.com/khoih-prog/AsyncHTTPRequest_Generic)
-* [ESP8266](https://www.espressif.com/en/products/socs/esp8266)
 * [XAMPP 8.0.5](https://www.apachefriends.org/index.html)
