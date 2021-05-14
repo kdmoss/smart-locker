@@ -42,3 +42,41 @@ InnoDB: using atomic writes.
 2021-04-30 17:56:12 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\kdmos\Desktop\Folders\Development\smart-door-lock\src\server\data\ib_buffer_pool
 2021-04-30 17:56:12 0 [Note] InnoDB: Buffer pool(s) load completed at 210430 17:56:12
 2021-04-30 17:56:12 0 [Note] Server socket created on IP: '::'.
+2021-05-13 19:56:05 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-05-13 19:56:05 0 [Note] InnoDB: Uses event mutexes
+2021-05-13 19:56:05 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2021-05-13 19:56:05 0 [Note] InnoDB: Number of pools: 1
+2021-05-13 19:56:05 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2021-05-13 19:56:05 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2021-05-13 19:56:05 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-05-13 19:56:05 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=354750
+2021-05-13 19:56:05 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2021-05-13 19:56:05 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-05-13 19:56:05 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-05-13 19:56:05 0 [Note] InnoDB: Setting file 'C:\Users\kdmos\Desktop\smart-locker\src\server\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-05-13 19:56:05 0 [Note] InnoDB: File 'C:\Users\kdmos\Desktop\smart-locker\src\server\data\ibtmp1' size is now 12 MB.
+2021-05-13 19:56:05 0 [Note] InnoDB: Waiting for purge to start
+2021-05-13 19:56:05 0 [Note] InnoDB: 10.4.19 started; log sequence number 354759; transaction id 307
+2021-05-13 19:56:05 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\kdmos\Desktop\smart-locker\src\server\data\ib_buffer_pool
+2021-05-13 19:56:05 0 [Note] Plugin 'FEEDBACK' is disabled.
+2021-05-13 19:56:05 0 [Note] InnoDB: Buffer pool(s) load completed at 210513 19:56:05
+2021-05-13 19:56:05 0 [Note] Server socket created on IP: '::'.
+2021-05-14  9:57:33 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-05-14  9:57:33 0 [Note] InnoDB: Uses event mutexes
+2021-05-14  9:57:33 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2021-05-14  9:57:33 0 [Note] InnoDB: Number of pools: 1
+2021-05-14  9:57:33 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2021-05-14  9:57:33 0 [Note] InnoDB: Initializing buffer pool, total size = 16M, instances = 1, chunk size = 16M
+2021-05-14  9:57:33 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-05-14  9:57:33 0 [Note] InnoDB: Starting crash recovery from checkpoint LSN=354768
+2021-05-14  9:57:33 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2021-05-14  9:57:33 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-05-14  9:57:33 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-05-14  9:57:33 0 [Note] InnoDB: Setting file 'C:\Users\kdmos\Desktop\smart-locker\src\server\data\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-05-14  9:57:33 0 [Note] InnoDB: File 'C:\Users\kdmos\Desktop\smart-locker\src\server\data\ibtmp1' size is now 12 MB.
+2021-05-14  9:57:33 0 [Note] InnoDB: Waiting for purge to start
+2021-05-14  9:57:33 0 [Note] InnoDB: 10.4.19 started; log sequence number 354777; transaction id 307
+2021-05-14  9:57:33 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\kdmos\Desktop\smart-locker\src\server\data\ib_buffer_pool
+2021-05-14  9:57:33 0 [Note] Plugin 'FEEDBACK' is disabled.
+2021-05-14  9:57:34 0 [Note] InnoDB: Buffer pool(s) load completed at 210514  9:57:34
+2021-05-14  9:57:34 0 [Note] Server socket created on IP: '::'.

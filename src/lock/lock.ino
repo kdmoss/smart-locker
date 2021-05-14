@@ -85,8 +85,9 @@ void handlePin(AsyncWebServerRequest *request)
 void handleToggle(AsyncWebServerRequest *request)
 {
   String html = "<html><head><meta http-equiv=\"refresh\" content=\"0; url=/\" /></head><body></body></html>";
-  digitalWrite(solenoidPin, (int)locked);
+
   locked = !locked;
+  digitalWrite(solenoidPin, (int)locked);
   
   request->send(200, "text/html", html);
 }
